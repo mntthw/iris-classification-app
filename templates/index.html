@@ -1,115 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Iris-Flower-Classification</title>
-	 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">  
+<meta charset="UTF-8">
+  <meta name="description" content="Iris species prediction">
+  <meta name="keywords" content="machine learning,SVM,iris">
+  <meta name="author" content="Nandalala">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>{{title}}</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">  
 </head>
 <body>
-	<center>
-		<h3> Iris Flower classification</h3>
-	</center>
 <div>
+
 	<center>
-		
-		<form action="/result" method='post'>
-			<table>
+		<h3>Given Data</h3>
+		<table border="1" width="50%">
+			{% for key, value in result.items():%}
 				<tr>
-					<td>
-						<b>
-							Sepal Length(cm):
-						</b>
-					</td>
-					<td>
-						<input type="text" name="Sepal_length" id='sl' placeholder="Eg:1.2,3.1 etc" required>
-					</td>
-					<td>
-						<select id='sln' oninput="sl.value=sln.value">
-							<option value="1.0">1.0</option>
-							<option value="2.0">2.0</option>
-							<option value="3.0">3.0</option>
-							<option value="4.0">4.0</option>
-							<option value="5.0">5.0</option>
-							<option value="6.0">6.0</option>
-						</select>
-					</td>
+					{%if key!='btn'%}	
+					<th>{{key}}</th>
+					<td><b>{{value}}</b></td>
+					{%endif%}
 				</tr>
-
-				<tr>
-					<td>
-						<b>
-							Sepal Width(cm):
-						</b>
-					</td>
-					<td>
-						<input type="text" name="Sepal_width" id='sw' placeholder="Eg:3.2,2.1 etc" required>
-					</td>
-					<td>
-						<select id='swn' oninput="sw.value=swn.value">
-							<option value="1.0">1.0</option>
-							<option value="2.0">2.0</option>
-							<option value="3.0">3.0</option>
-							<option value="4.0">4.0</option>
-							<option value="5.0">5.0</option>
-							<option value="6.0">6.0</option>
-						</select>
-					</td>
-				</tr>
-
-				<tr>
-					<td>
-						<b>
-							Petal Length(cm):
-						</b>
-					</td>
-					<td>
-						<input type="text" name="petal_length" id='pl' placeholder="Eg:2.3,1.0 etc" required>
-					</td>
-					<td>
-						<select id='pln' oninput="pl.value=pln.value">
-							<option value="1.0">1.0</option>
-							<option value="2.0">2.0</option>
-							<option value="3.0">3.0</option>
-							<option value="4.0">4.0</option>
-							<option value="5.0">5.0</option>
-							<option value="6.0">6.0</option>
-						</select>
-					</td>
-				</tr>
-
-				<tr>
-					<td>
-						<b>
-							Petal Width(cm):
-						</b>
-					</td>
-					<td>
-						<input type="text" name="petal_width" id='pw' placeholder="Eg:2.3,1.0 etc" required>
-					</td>
-					<td>
-						<select id='pwn' oninput="pw.value=pwn.value">
-							<option value="1.0">1.0</option>
-							<option value="2.0">2.0</option>
-							<option value="3.0">3.0</option>
-							<option value="4.0">4.0</option>
-							<option value="5.0">5.0</option>
-							<option value="6.0">6.0</option>
-						</select>
-					</td>
-				</tr>
-
-
-
-			</table>
+			{% endfor %}
+		</table>
+		<br>
+		<b>Predicted species:</b>
+		<br>
+		<br>
+		{% if predicted=='Iris_setosa' :%}		
+			<img src="{{url_for('static',filename='iris_species/Iris_setosa.png')}}" height="150" width="150">
 			<br>
-			<input type="submit" name="btn" value="predict">
-		</form>
+
+
+		{% elif predicted=='Iris_versicolor' %}
+		<img src="{{url_for('static',filename='iris_species/Iris_versicolor.png')}}">
+		<br>
+		{% else %}
+		<img src="{{url_for('static',filename='iris_species/Iris_virginica.png')}}">
+		<br>
+		{% endif %}
+		<b>{{predicted}}</b>
+		<br>
+		<br>
+		<a href="https://github.com/NaNdalal-dev/Iris-Classification"><img src="{{url_for('static',filename='gitlogo/git.png')}}" width="50" height="40"></a>
 	</center>
 </div>
-<!--center>
-	
-	<input type="color" id="cl" oninput="ct.value=cl.value">
-	<input type="text" id="ct">
-	
-</center-->
 </body>
 </html>
