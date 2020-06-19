@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{title}}</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">  
+</head>
+<body>
+<div>
+
+	<center>
+		<h3>Given Data</h3>
+		<table border="1" width="50%">
+			{% for key, value in result.items():%}
+				<tr>
+					{%if key!='btn'%}	
+					<th>{{key}}</th>
+					<td><b>{{value}}</b></td>
+					{%endif%}
+				</tr>
+			{% endfor %}
+		</table>
+		<br>
+		<b>Predicted species:</b>
+		<br>
+		<br>
+		{% if predicted=='Iris_setosa' :%}		
+			<img src="{{url_for('static',filename='iris_species/Iris_setosa.png')}}">
+
+
+		{% elif predicted=='Iris_versicolor' %}
+		<img src="{{url_for('static',filename='iris_species/Iris_versicolor.png')}}">
+		{% else %}
+		<img src="{{url_for('static',filename='iris_species/Iris_virginica.png')}}">
+		<br>
+		{% endif %}
+		<b>{{predicted}}</b>
+		<br>
+		<br>
+		<a href="https://github.com/NaNdalal-dev/Iris-Classification"><img src="{{url_for('static',filename='gitlogo/git.png')}}" width="50" height="40"></a>
+	</center>
+</div>
+</body>
+</html>
