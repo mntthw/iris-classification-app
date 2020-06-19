@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+	  <meta charset="UTF-8">
+  <meta name="description" content="Iris species prediction">
+  <meta name="keywords" content="machine learning,SVM,iris">
+  <meta name="author" content="Nandalala">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 	<title>{{title}}</title>
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">  
 </head>
@@ -24,11 +30,13 @@
 		<br>
 		<br>
 		{% if predicted=='Iris_setosa' :%}		
-			<img src="{{url_for('static',filename='iris_species/Iris_setosa.png')}}">
+			<img src="{{url_for('static',filename='iris_species/Iris_setosa.png')}}" height="150" width="150">
+			<br>
 
 
 		{% elif predicted=='Iris_versicolor' %}
 		<img src="{{url_for('static',filename='iris_species/Iris_versicolor.png')}}">
+		<br>
 		{% else %}
 		<img src="{{url_for('static',filename='iris_species/Iris_virginica.png')}}">
 		<br>
