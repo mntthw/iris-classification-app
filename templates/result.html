@@ -44,6 +44,20 @@
 		<b>{{predicted}}</b>
 		<br>
 		<br>
+		{% if predicted=='Iris_setosa' :%}		
+			<i>Know more about <a href="https://en.wikipedia.org/wiki/Iris_setosa">{{ predicted }}</a></i>
+			<br>
+
+
+		{% elif predicted=='Iris_versicolor' %}
+		<i>Know more about <a href="https://en.wikipedia.org/wiki/Iris_versicolor">{{ predicted }}</a></i>
+		<br>
+		{% else %}
+		<i>Know more about <a href="https://en.wikipedia.org/wiki/Iris_virginica">{{ predicted }}</a></i>
+		<br>
+		{% endif %}
+		<br>
+		<br>
 		<a href="https://github.com/NaNdalal-dev/Iris-Classification"><img src="{{url_for('static',filename='gitlogo/git.png')}}" width="50" height="40"></a>
 	</center>
 </div>
