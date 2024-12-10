@@ -33,9 +33,6 @@ def result():
         pre = model.predict([data])
         res = iris_names[pre[0]]
 
-        # Sửa kết quả dự đoán (từ "Iris_versicolor" thành "Iris Versicolor")
-        res = res.replace('_', ' ')
-
         # Gửi dữ liệu dự đoán và các giá trị nhập liệu trở lại giao diện kết quả
         return render_template('result.html', title='Result', result=display_data, predicted=res)
     except:
