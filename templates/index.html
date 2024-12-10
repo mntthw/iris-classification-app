@@ -1,111 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-	<title>Iris-Flower-Classification</title>
-	 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">  
+	<title>Phân loại Hoa Iris</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">  
 </head>
 <body>
-	<center>
-		<h3> Iris Species classification</h3>
-	</center>
-<div>
-	<center>
-		
-		<form action="/result" method='post'>
-			<table>
-				<tr>
-					<td>
-						<b>
-							Sepal Length(cm):
-						</b>
-					</td>
-					<td>
-						<input type="text" name="Sepal_length" id='sl' placeholder="Eg:1.2,3.1 etc" required>
-					</td>
-					<td>
-						<select id='sln' oninput="sl.value=sln.value">
-							<option value="1.0">1.0</option>
-							<option value="2.0">2.0</option>
-							<option value="3.0">3.0</option>
-							<option value="4.0">4.0</option>
-							<option value="5.0">5.0</option>
-							<option value="6.0">6.0</option>
-						</select>
-					</td>
-				</tr>
 
-				<tr>
-					<td>
-						<b>
-							Sepal Width(cm):
-						</b>
-					</td>
-					<td>
-						<input type="text" name="Sepal_width" id='sw' placeholder="Eg:3.2,2.1 etc" required>
-					</td>
-					<td>
-						<select id='swn' oninput="sw.value=swn.value">
-							<option value="1.0">1.0</option>
-							<option value="2.0">2.0</option>
-							<option value="3.0">3.0</option>
-							<option value="4.0">4.0</option>
-							<option value="5.0">5.0</option>
-							<option value="6.0">6.0</option>
-						</select>
-					</td>
-				</tr>
+	<!-- Tiêu đề trang nằm trong header -->
+	<header>
+		<center>
+			<h3>Phân loại loài hoa Iris</h3>
+		</center>
+	</header>
 
-				<tr>
-					<td>
-						<b>
-							Petal Length(cm):
-						</b>
-					</td>
-					<td>
-						<input type="text" name="petal_length" id='pl' placeholder="Eg:2.3,1.0 etc" required>
-					</td>
-					<td>
-						<select id='pln' oninput="pl.value=pln.value">
-							<option value="1.0">1.0</option>
-							<option value="2.0">2.0</option>
-							<option value="3.0">3.0</option>
-							<option value="4.0">4.0</option>
-							<option value="5.0">5.0</option>
-							<option value="6.0">6.0</option>
-						</select>
-					</td>
-				</tr>
-
-				<tr>
-					<td>
-						<b>
-							Petal Width(cm):
-						</b>
-					</td>
-					<td>
-						<input type="text" name="petal_width" id='pw' placeholder="Eg:2.3,1.0 etc" required>
-					</td>
-					<td>
-						<select id='pwn' oninput="pw.value=pwn.value">
-							<option value="1.0">1.0</option>
-							<option value="2.0">2.0</option>
-							<option value="3.0">3.0</option>
-							<option value="4.0">4.0</option>
-							<option value="5.0">5.0</option>
-							<option value="6.0">6.0</option>
-						</select>
-					</td>
-				</tr>
-
-
-
-			</table>
-			<br>
-			<input type="submit" name="btn" value="predict">
-		</form>
-	</center>
-</div>
+	<!-- Khoảng cách giữa tiêu đề và bảng -->
+	<div class="form-container">
+		<center>
+			<form action="/result" method="post">
+				<table>
+					<tr>
+						<td><b>Chiều dài đài hoa (cm):</b></td>
+						<td><input type="text" name="Sepal_length" id="sl" placeholder="Ví dụ: 1.2, 3.1 v.v." required></td>
+						<td>
+							<select id="sln" oninput="sl.value=sln.value">
+								<option value="1.0">1.0</option>
+								<option value="2.0">2.0</option>
+								<option value="3.0">3.0</option>
+								<option value="4.0">4.0</option>
+								<option value="5.0">5.0</option>
+								<option value="6.0">6.0</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Chiều rộng đài hoa (cm):</b></td>
+						<td><input type="text" name="Sepal_width" id="sw" placeholder="Ví dụ: 3.2, 2.1 v.v." required></td>
+						<td>
+							<select id="swn" oninput="sw.value=swn.value">
+								<option value="1.0">1.0</option>
+								<option value="2.0">2.0</option>
+								<option value="3.0">3.0</option>
+								<option value="4.0">4.0</option>
+								<option value="5.0">5.0</option>
+								<option value="6.0">6.0</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Chiều dài cánh hoa (cm):</b></td>
+						<td><input type="text" name="petal_length" id="pl" placeholder="Ví dụ: 2.3, 1.0 v.v." required></td>
+						<td>
+							<select id="pln" oninput="pl.value=pln.value">
+								<option value="1.0">1.0</option>
+								<option value="2.0">2.0</option>
+								<option value="3.0">3.0</option>
+								<option value="4.0">4.0</option>
+								<option value="5.0">5.0</option>
+								<option value="6.0">6.0</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td><b>Chiều rộng cánh hoa (cm):</b></td>
+						<td><input type="text" name="petal_width" id="pw" placeholder="Ví dụ: 2.3, 1.0 v.v." required></td>
+						<td>
+							<select id="pwn" oninput="pw.value=pwn.value">
+								<option value="1.0">1.0</option>
+								<option value="2.0">2.0</option>
+								<option value="3.0">3.0</option>
+								<option value="4.0">4.0</option>
+								<option value="5.0">5.0</option>
+								<option value="6.0">6.0</option>
+							</select>
+						</td>
+					</tr>
+				</table>
+				<br>
+				<input type="submit" name="btn" value="Dự đoán">
+			</form>
+		</center>
+	</div>
 
 </body>
 </html>

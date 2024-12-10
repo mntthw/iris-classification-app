@@ -1,61 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-
-	<title>{{title}}</title>
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">  
+	<title>Phân loại loài hoa Iris</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-<div>
+	<div class="container">
+		<h3>PHÂN LOẠI LOÀI HOA IRIS</h3>
+		<div class="content">
+			<!-- Bảng dữ liệu người dùng đã nhập -->
+			<div class="left-column">
+				<table border="1">
+					{% for key, value in result.items():%}
+						<tr>
+							{% if key != 'btn' %}
+								<th>{{ key }}</th>
+								<td><b>{{ value }}</b></td>
+							{% endif %}
+						</tr>
+					{% endfor %}
+				</table>
+			</div>
 
-	<center>
-		<h3>Given Data</h3>
-		<table border="1" width="35%">
-			{% for key, value in result.items():%}
-				<tr>
-					{%if key!='btn'%}	
-					<th>{{key}}</th>
-					<td><b>{{value}}</b></td>
-					{%endif%}
-				</tr>
-			{% endfor %}
-		</table>
-		<br>
-		<b>Predicted species:</b>
-		<br>
-		<br>
-		{% if predicted=='Iris_setosa' :%}		
-			<img src="{{url_for('static',filename='iris_species/Iris_setosa.png')}}" height="150" width="150">
-			<br>
-
-
-		{% elif predicted=='Iris_versicolor' %}
-		<img src="{{url_for('static',filename='iris_species/Iris_versicolor.png')}}">
-		<br>
-		{% else %}
-		<img src="{{url_for('static',filename='iris_species/Iris_virginica.png')}}">
-		<br>
-		{% endif %}
-		<b>{{predicted}}</b>
-		<br>
-		<br>
-		{% if predicted=='Iris_setosa' :%}		
-			<i>Know more about <a href="https://en.wikipedia.org/wiki/Iris_setosa">{{ predicted }}</a></i>
-			<br>
-
-
-		{% elif predicted=='Iris_versicolor' %}
-		<i>Know more about <a href="https://en.wikipedia.org/wiki/Iris_versicolor">{{ predicted }}</a></i>
-		<br>
-		{% else %}
-		<i>Know more about <a href="https://en.wikipedia.org/wiki/Iris_virginica">{{ predicted }}</a></i>
-		<br>
-		{% endif %}
-		<br>
-		<br>
-		<a href="https://github.com/NaNdalal-dev/Iris-Classification"><img src="{{url_for('static',filename='gitlogo/git.png')}}" width="50" height="40"></a>
-	</center>
-</div>
+			<!-- Dự đoán loài hoa -->
+			<div class="right-column">
+				<b>Loài hoa dự đoán:</b>
+				<br><br>
+				{% if predicted == 'Iris_setosa' %}
+					<img src="{{ url_for('static', filename='iris_species/Iris_setosa.png') }}" height="150" width="150">
+				{% elif predicted == 'Iris_versicolor' %}
+					<img src="{{ url_for('static', filename='iris_species/Iris_versicolor.png') }}">
+				{% else %}
+					<img src="{{ url_for('static', filename='iris_species/Iris_virginica.png') }}">
+				{% endif %}
+				<br><b>{{ predicted }}</b>
+				<br><br>
+				{% if predicted == 'Iris_setosa' %}
+					<i>Tìm hiểu thêm về <a href="https://en.wikipedia.org/wiki/Iris_setosa">{{ predicted }}</a></i>
+				{% elif predicted == 'Iris_versicolor' %}
+					<i>Tìm hiểu thêm về <a href="https://en.wikipedia.org/wiki/Iris_versicolor">{{ predicted }}</a></i>
+				{% else %}
+					<i>Tìm hiểu thêm về <a href="https://en.wikipedia.org/wiki/Iris_virginica">{{ predicted }}</a></i>
+				{% endif %}
+			</div>
+		</div>
+	</div>
 </body>
 </html>
